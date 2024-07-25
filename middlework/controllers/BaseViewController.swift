@@ -5,6 +5,7 @@
 //  Created by Jaehwang on 7/23/24.
 //
 
+import Foundation
 import UIKit
 
 class BaseViewController: UIViewController {
@@ -14,16 +15,24 @@ class BaseViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension BaseViewController {
+    func showAlert(
+        title: String?,
+        message: String?,
+        confirmHandler: (() -> Void)? = nil,
+        completion: (() -> Void)? = nil)
+    {
+        let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
+            if let handler = confirmHandler {
+                handler()
+            }
+        }
+        alertView.addAction(confirmAction)
+        present(alertView, animated: true, completion: completion)
     }
-    */
 
 }
